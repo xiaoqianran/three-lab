@@ -1,0 +1,14 @@
+{
+  "name": "three-lab",
+  "private": true,
+  "version": "0.1.0",
+  "description": "three.js 实验室 —— 每个编号对应一个独立的可视化实验",
+  "scripts": {
+    "dev": "pnpm --filter \"./0*\" --parallel dev",
+    "build": "pnpm --filter \"./0*\" build",
+    "typecheck": "pnpm --filter \"./0*\" typecheck"
+  },
+  "devDependencies": {
+    "puppeteer": "^25.10.0"
+  }
+}

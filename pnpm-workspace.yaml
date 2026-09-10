@@ -1,0 +1,10 @@
+# three-lab 是一个 pnpm workspace：
+# 每个以数字开头的目录是一个独立的 three.js 可视化实验，共享同一份依赖。
+packages:
+  - '0*'
+
+# pnpm 12 起，依赖构建脚本白名单写在这里。
+# esbuild 需要落盘平台二进制；puppeteer 的 postinstall 负责下载 headless Chrome（仅用于开发期截图）。
+allowBuilds:
+  esbuild: true
+  puppeteer: true
