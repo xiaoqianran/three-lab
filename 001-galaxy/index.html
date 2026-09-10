@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#04050c" />
+    <title>three-lab · Spiral Galaxy</title>
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <header id="title">
+      <h1>Spiral Galaxy</h1>
+      <p>density-wave · curl-noise · gpu particles</p>
+    </header>
+
+    <!-- 分步演示覆盖层 -->
+    <div id="tour">
+      <div id="tour-card">
+        <div class="tour-head">
+          <span class="tour-step">STEP <b id="tour-index">01</b> / <b id="tour-total">12</b></span>
+          <span class="tour-bar"><i id="tour-timer"></i></span>
+        </div>
+        <h2 id="tour-title" class="tour-title"></h2>
+        <p id="tour-desc" class="tour-desc"></p>
+        <ul id="tour-files" class="tour-files"></ul>
+        <button id="tour-skip" type="button" title="跳过演示 (Esc)">跳过演示 →</button>
+      </div>
+
+      <div id="tour-controls">
+        <button id="tour-prev" class="tour-btn" type="button" title="上一步 (←)">‹</button>
+        <div id="tour-dots" class="tour-dots"></div>
+        <button id="tour-play" class="tour-btn" type="button" title="暂停 (Space)">❚❚</button>
+        <button id="tour-next" class="tour-btn" type="button" title="下一步 (→)">›</button>
+      </div>
+    </div>
+
+    <div id="hud">
+      <span><b>拖拽</b> 旋转</span>
+      <span><b>滚轮</b> 缩放</span>
+      <span><b>右键</b> 引力源</span>
+      <span><b>Space</b> 巡游</span>
+      <span><b>H</b> 面板</span>
+      <span><b>T</b> 重播演示</span>
+    </div>
+
+    <div id="stats"><span id="fps">--</span> FPS · <span id="count">--</span> 粒子</div>
+
+    <div id="loading">
+      <div class="ring"></div>
+      <p>点燃恒星…</p>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

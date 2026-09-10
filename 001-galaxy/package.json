@@ -1,0 +1,23 @@
+{
+  "name": "001-galaxy",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "001 · GPU 粒子螺旋星系：密度波旋臂 + curl noise 流场 + 21 步分步演示",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "lil-gui": "^0.20.0",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "@types/three": "^0.180.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  }
+}
