@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#0a0c12" />
+    <title>three-lab · 002 Physics Museum</title>
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <header id="title">
+      <h1>Physics Museum</h1>
+      <p>rapier3d · rigid bodies · joints · ccd</p>
+    </header>
+
+    <div id="hall-card">
+      <div class="hall-head">
+        <span class="hall-index">HALL <b id="hall-no">01</b> / <b id="hall-total">17</b></span>
+      </div>
+      <h2 id="hall-title" class="hall-title"></h2>
+      <p id="hall-desc" class="hall-desc"></p>
+      <ul id="hall-tags" class="hall-tags"></ul>
+    </div>
+
+    <div id="hall-controls">
+      <button id="hall-prev" class="hall-btn" type="button" title="上一个展厅 (←)">‹</button>
+      <div id="hall-dots" class="hall-dots"></div>
+      <button id="hall-next" class="hall-btn" type="button" title="下一个展厅 (→)">›</button>
+    </div>
+
+    <div id="hud">
+      <span><b>拖拽</b> 旋转</span>
+      <span><b>滚轮</b> 缩放</span>
+      <span><b>点击</b> 扔球</span>
+      <span><b>R</b> 重置展厅</span>
+      <span><b>Space</b> 暂停</span>
+    </div>
+
+    <div id="stats">
+      <span id="fps">--</span> FPS · <span id="bodies">--</span> 刚体 · <span id="drawcalls">--</span> 批次
+    </div>
+
+    <div id="loading">
+      <div class="ring"></div>
+      <p>唤醒物理世界…</p>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

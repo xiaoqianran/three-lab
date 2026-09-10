@@ -1,0 +1,356 @@
+:root {
+  --ink: #d6ddf5;
+  --dim: rgba(214, 221, 245, 0.44);
+  --bg: #0a0c12;
+  --line: rgba(130, 160, 255, 0.16);
+  --panel: rgba(11, 14, 24, 0.8);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+#scene {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  cursor: grab;
+}
+
+#scene:active {
+  cursor: grabbing;
+}
+
+/* ---------------- 标题 ---------------- */
+
+#title {
+  position: fixed;
+  top: 24px;
+  left: 26px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+}
+
+#title h1 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(235, 240, 255, 0.92);
+}
+
+#title p {
+  margin: 7px 0 0;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ---------------- 展厅说明卡片 ---------------- */
+
+#hall-card {
+  position: fixed;
+  top: 82px;
+  left: 26px;
+  width: 330px;
+  padding: 14px 17px;
+  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hall-head {
+  margin-bottom: 11px;
+}
+
+.hall-index {
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  color: var(--dim);
+}
+
+.hall-index b {
+  font-weight: 600;
+  color: rgba(235, 240, 255, 0.95);
+  font-variant-numeric: tabular-nums;
+}
+
+.hall-title {
+  margin: 0 0 9px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(240, 244, 255, 0.96);
+}
+
+.hall-desc {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.72;
+  color: rgba(214, 221, 245, 0.66);
+  /* Linux 上要显式带 Noto CJK，否则中文会渲染成方块 */
+  font-family: ui-sans-serif, system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC',
+    'Source Han Sans SC', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+.hall-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.hall-tags li {
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-size: 9.5px;
+  color: rgba(150, 190, 255, 0.85);
+  background: rgba(120, 150, 255, 0.1);
+  border: 1px solid rgba(120, 150, 255, 0.15);
+  white-space: nowrap;
+}
+
+/* ---------------- 展厅切换 ---------------- */
+
+#hall-controls {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 4;
+}
+
+.hall-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hall-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(130, 160, 255, 0.35);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    width 0.3s cubic-bezier(0.2, 0.8, 0.3, 1),
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hall-dot:hover {
+  background: rgba(160, 190, 255, 0.45);
+}
+
+.hall-dot.is-done {
+  background: rgba(120, 150, 255, 0.32);
+}
+
+.hall-dot.is-current {
+  width: 22px;
+  border-radius: 4px;
+  background: rgba(198, 218, 255, 0.95);
+  border-color: rgba(198, 218, 255, 0.95);
+  box-shadow: 0 0 14px rgba(140, 180, 255, 0.75);
+}
+
+.hall-btn {
+  display: grid;
+  place-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(130, 160, 255, 0.2);
+  background: rgba(120, 150, 255, 0.08);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.hall-btn:hover:not(:disabled) {
+  background: rgba(120, 150, 255, 0.24);
+}
+
+.hall-btn:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+/* ---------------- 底部提示 / 统计 ---------------- */
+
+#hud {
+  position: fixed;
+  left: 26px;
+  bottom: 24px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+}
+
+#hud b {
+  font-weight: 600;
+  color: rgba(235, 240, 255, 0.85);
+}
+
+#stats {
+  position: fixed;
+  right: 26px;
+  bottom: 24px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  font-variant-numeric: tabular-nums;
+}
+
+#stats span {
+  color: rgba(235, 240, 255, 0.85);
+}
+
+/* ---------------- 加载 ---------------- */
+
+#loading {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 18px;
+  background: var(--bg);
+  z-index: 10;
+  transition: opacity 0.7s ease;
+}
+
+#loading.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#loading .ring {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(130, 160, 255, 0.18);
+  border-top-color: rgba(160, 190, 255, 0.9);
+  animation: spin 0.9s linear infinite;
+}
+
+#loading p {
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------------- lil-gui ---------------- */
+
+.lil-gui.root {
+  --background-color: rgba(11, 14, 24, 0.84);
+  --widget-color: rgba(120, 150, 255, 0.14);
+  --hover-color: rgba(120, 150, 255, 0.26);
+  --focus-color: rgba(120, 150, 255, 0.34);
+  --text-color: #d6ddf5;
+  --title-background-color: rgba(120, 150, 255, 0.1);
+  --font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-size: 11px;
+  --width: 252px;
+  top: 22px;
+  right: 24px;
+  backdrop-filter: blur(10px);
+  z-index: 5 !important;
+}
+
+/* ---------------- 窄屏 ---------------- */
+
+@media (max-width: 880px) {
+  #hall-card {
+    top: auto;
+    bottom: 96px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+  }
+
+  #hud {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  #title {
+    top: 16px;
+    left: 16px;
+  }
+
+  #title h1 {
+    font-size: 12px;
+  }
+
+  #hall-controls {
+    bottom: 18px;
+    gap: 12px;
+  }
+
+  .hall-dots {
+    gap: 6px;
+  }
+
+  #stats {
+    right: 16px;
+    bottom: 18px;
+  }
+}
