@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#0b0e16" />
+    <title>three-lab · 004 Try</title>
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <header id="title">
+      <h1>Try Lab</h1>
+      <p>sandbox · 改一行 · 看一眼</p>
+    </header>
+
+    <!-- 试验说明卡片 -->
+    <div id="try-card">
+      <div class="try-head">
+        <span class="try-index">TRY <b id="try-no">01</b> / <b id="try-total">04</b></span>
+      </div>
+      <h2 id="try-title" class="try-title"></h2>
+      <p id="try-summary" class="try-summary"></p>
+      <p class="try-hint"><b>试着改这里</b><span id="try-hint"></span></p>
+      <ul id="try-tags" class="try-tags"></ul>
+      <ul id="try-files" class="try-files"></ul>
+    </div>
+
+    <div id="try-controls">
+      <button id="try-prev" class="try-btn" type="button" title="上一个试验 (←)">‹</button>
+      <div id="try-dots" class="try-dots"></div>
+      <button id="try-next" class="try-btn" type="button" title="下一个试验 (→)">›</button>
+    </div>
+
+    <div id="hud">
+      <span><b>拖拽</b> 旋转</span>
+      <span><b>滚轮</b> 缩放</span>
+      <span><b>右键拖</b> 平移</span>
+      <span><b>Space</b> 暂停</span>
+      <span><b>R</b> 重置</span>
+      <span><b>W</b> 线框</span>
+      <span><b>G</b> 面板</span>
+    </div>
+
+    <div id="stats">
+      <span id="fps">--</span> FPS · <span id="calls">--</span> 批次 · <span id="tris">--</span> 三角形
+    </div>
+
+    <div id="loading">
+      <div class="ring"></div>
+      <p>准备试验台…</p>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

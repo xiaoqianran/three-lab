@@ -1,9 +1,9 @@
 {
-  "name": "001-galaxy",
+  "name": "004-try",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "001 · GPU 粒子螺旋星系：密度波旋臂 + curl noise 流场 + 21 步分步演示",
+  "description": "004 · 试验场：随手加一个「试验」，改一行立刻看到效果",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

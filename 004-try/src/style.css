@@ -1,0 +1,392 @@
+:root {
+  --ink: #d6ddf5;
+  --dim: rgba(214, 221, 245, 0.44);
+  --bg: #0b0e16;
+  --line: rgba(130, 160, 255, 0.16);
+  --panel: rgba(11, 14, 24, 0.8);
+  --accent: rgba(150, 190, 255, 0.9);
+  /* 试验场的气质色：暖一点，跟 003 的冷蓝区分开 */
+  --try: rgba(255, 196, 120, 0.92);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+#scene {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  cursor: grab;
+}
+
+#scene:active {
+  cursor: grabbing;
+}
+
+/* ---------------- 标题 ---------------- */
+
+#title {
+  position: fixed;
+  top: 24px;
+  left: 26px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+}
+
+#title h1 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(235, 240, 255, 0.92);
+}
+
+#title p {
+  margin: 7px 0 0;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  color: var(--dim);
+  font-family: ui-sans-serif, system-ui, 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
+}
+
+/* ---------------- 试验卡片 ---------------- */
+
+#try-card {
+  position: fixed;
+  top: 82px;
+  left: 26px;
+  width: 336px;
+  padding: 14px 17px 15px;
+  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 3;
+}
+
+.try-head {
+  margin-bottom: 11px;
+}
+
+.try-index {
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  color: var(--dim);
+}
+
+.try-index b {
+  font-weight: 600;
+  color: var(--try);
+  font-variant-numeric: tabular-nums;
+}
+
+.try-title {
+  margin: 0 0 9px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(240, 244, 255, 0.96);
+  font-family: ui-sans-serif, system-ui, 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
+}
+
+.try-summary {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.72;
+  color: rgba(214, 221, 245, 0.68);
+  font-family: ui-sans-serif, system-ui, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC',
+    'Source Han Sans SC', 'WenQuanYi Micro Hei', sans-serif;
+}
+
+/* 「试着改这里」：试验场最重要的那句话，单独强调出来 */
+.try-hint {
+  display: flex;
+  gap: 8px;
+  margin: 11px 0 0;
+  padding: 8px 10px;
+  border-radius: 7px;
+  border-left: 2px solid var(--try);
+  background: rgba(255, 196, 120, 0.07);
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: rgba(255, 226, 190, 0.82);
+  font-family: ui-sans-serif, system-ui, 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
+}
+
+.try-hint b {
+  flex: none;
+  font-weight: 600;
+  color: var(--try);
+}
+
+.try-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.try-tags li {
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-size: 9.5px;
+  color: rgba(150, 190, 255, 0.85);
+  background: rgba(120, 150, 255, 0.1);
+  border: 1px solid rgba(120, 150, 255, 0.15);
+  white-space: nowrap;
+}
+
+.try-files {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 9px 0 0;
+  border-top: 1px solid rgba(130, 160, 255, 0.1);
+}
+
+.try-files li {
+  font-size: 10px;
+  color: var(--dim);
+  padding: 2px 0;
+}
+
+.try-files li::before {
+  content: '· ';
+  color: rgba(255, 196, 120, 0.5);
+}
+
+/* ---------------- 切换 ---------------- */
+
+#try-controls {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 4;
+}
+
+.try-dots {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.try-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(130, 160, 255, 0.35);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    width 0.3s cubic-bezier(0.2, 0.8, 0.3, 1),
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.try-dot:hover {
+  background: rgba(160, 190, 255, 0.45);
+}
+
+.try-dot.is-done {
+  background: rgba(120, 150, 255, 0.32);
+}
+
+.try-dot.is-current {
+  width: 22px;
+  border-radius: 4px;
+  background: var(--try);
+  border-color: var(--try);
+  box-shadow: 0 0 14px rgba(255, 196, 120, 0.6);
+}
+
+.try-btn {
+  display: grid;
+  place-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(130, 160, 255, 0.2);
+  background: rgba(120, 150, 255, 0.08);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.try-btn:hover:not(:disabled) {
+  background: rgba(120, 150, 255, 0.24);
+}
+
+.try-btn:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+/* ---------------- 底部提示 / 统计 ---------------- */
+
+#hud {
+  position: fixed;
+  left: 26px;
+  bottom: 24px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+}
+
+#hud b {
+  font-weight: 600;
+  color: rgba(235, 240, 255, 0.85);
+}
+
+#stats {
+  position: fixed;
+  right: 26px;
+  bottom: 24px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  font-variant-numeric: tabular-nums;
+}
+
+#stats span {
+  color: rgba(235, 240, 255, 0.85);
+}
+
+/* ---------------- 加载 ---------------- */
+
+#loading {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 18px;
+  background: var(--bg);
+  z-index: 10;
+  transition: opacity 0.7s ease;
+}
+
+#loading.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#loading .ring {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(130, 160, 255, 0.18);
+  border-top-color: var(--try);
+  animation: spin 0.9s linear infinite;
+}
+
+#loading p {
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--dim);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------------- lil-gui ---------------- */
+
+.lil-gui.root {
+  --background-color: rgba(11, 14, 24, 0.86);
+  --widget-color: rgba(120, 150, 255, 0.14);
+  --hover-color: rgba(120, 150, 255, 0.26);
+  --focus-color: rgba(120, 150, 255, 0.34);
+  --text-color: #d6ddf5;
+  --title-background-color: rgba(255, 196, 120, 0.12);
+  --font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-size: 11px;
+  --width: 252px;
+  top: 22px;
+  right: 24px;
+  backdrop-filter: blur(10px);
+  z-index: 5 !important;
+}
+
+/* ---------------- 窄屏 ---------------- */
+
+@media (max-width: 880px) {
+  #try-card {
+    top: auto;
+    bottom: 96px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+  }
+
+  #hud {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  #title {
+    top: 16px;
+    left: 16px;
+  }
+
+  #title h1 {
+    font-size: 12px;
+  }
+
+  #try-controls {
+    bottom: 18px;
+    gap: 12px;
+  }
+
+  #stats {
+    right: 16px;
+    bottom: 18px;
+  }
+}
