@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#080b14" />
+    <title>three-lab · 003 Build a World</title>
+  </head>
+  <body>
+    <!-- 只有一个 canvas：所有画面都由 WebGLRenderer 画到这上面 -->
+    <canvas id="scene"></canvas>
+
+    <header id="title">
+      <h1>Build a World</h1>
+      <p>three.js · 一步一步把世界搭出来</p>
+    </header>
+
+    <!-- 章节说明卡片：讲清"这一步在世界里加了什么" -->
+    <div id="chapter-card">
+      <div class="chapter-head">
+        <span class="chapter-index">
+          STEP <b id="chapter-no">01</b> / <b id="chapter-total">17</b>
+        </span>
+      </div>
+      <h2 id="chapter-title" class="chapter-title"></h2>
+      <p id="chapter-desc" class="chapter-desc"></p>
+      <ul id="chapter-apis" class="chapter-apis"></ul>
+      <ul id="chapter-files" class="chapter-files"></ul>
+    </div>
+
+    <!-- 章节切换 -->
+    <div id="chapter-controls">
+      <button id="chapter-prev" class="chapter-btn" type="button" title="上一章 (←)">‹</button>
+      <div id="chapter-dots" class="chapter-dots"></div>
+      <button id="chapter-next" class="chapter-btn" type="button" title="下一章 (→)">›</button>
+    </div>
+
+    <div id="hud">
+      <span><b>拖拽</b> 旋转</span>
+      <span><b>滚轮</b> 缩放</span>
+      <span><b>← →</b> 换章</span>
+      <span><b>C</b> 源码</span>
+      <span><b>Space</b> 暂停</span>
+      <span><b>R</b> 重置</span>
+    </div>
+
+    <div id="stats">
+      <span id="fps">--</span> FPS · <span id="calls">--</span> 批次 ·
+      <span id="tris">--</span> 三角形 · <span id="objs">--</span> 对象
+    </div>
+
+    <!-- 源码阅读器：把当前章节的 .ts 原样贴出来，边看边读 -->
+    <aside id="source" aria-hidden="true">
+      <header class="source-head">
+        <span class="source-title">源码 · 对照阅读</span>
+        <button id="source-close" class="source-close" type="button" title="关闭 (C)">×</button>
+      </header>
+      <nav class="source-tabs" id="source-tabs"></nav>
+      <div class="source-body" id="source-body"></div>
+    </aside>
+
+    <div id="loading">
+      <div class="ring"></div>
+      <p>搭建世界…</p>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

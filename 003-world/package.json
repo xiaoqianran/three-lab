@@ -1,0 +1,23 @@
+{
+  "name": "003-world",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "003 · 从零构建世界：沿着 17 个章节把 three.js 的主要能力一个个点亮",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "lil-gui": "^0.21.0",
+    "three": "^0.186.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.2",
+    "@types/three": "^0.185.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2"
+  }
+}
