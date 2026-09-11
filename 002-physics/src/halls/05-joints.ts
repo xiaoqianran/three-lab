@@ -24,7 +24,6 @@ export const jointsHall: Hall = {
 
   build(ctx) {
     const { stage, physics } = ctx
-    const world = physics.world
 
     stage.addGround(70)
     prismaticSlider = null

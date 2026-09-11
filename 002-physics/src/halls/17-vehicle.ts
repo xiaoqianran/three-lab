@@ -28,7 +28,6 @@ export const vehicleHall: Hall = {
 
   build(ctx) {
     const { stage, physics } = ctx
-    const world = physics.world
 
     wheels.length = 0
 

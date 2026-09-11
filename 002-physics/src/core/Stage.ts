@@ -260,7 +260,8 @@ export class Stage {
   private readonly scratchColor = new THREE.Color()
 
   constructor(
-    private readonly scene: THREE.Scene,
+    // scene 只在构造里用一次（挂 group），不需要存成字段
+    scene: THREE.Scene,
     private readonly physics: PhysicsWorld,
   ) {
     // roughness 调高、metalness 压到接近 0：

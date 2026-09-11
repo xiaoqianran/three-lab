@@ -20,7 +20,6 @@ export class Engine {
   private readonly updaters: UpdateFn[] = []
   private readonly resizers: ResizeFn[] = []
   private readonly afterRenderHooks: Array<() => void> = []
-  private readonly basePixelRatio = Math.min(window.devicePixelRatio, 2)
   private renderScale = 1
   private rafId = 0
   private running = false

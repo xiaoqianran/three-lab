@@ -160,7 +160,6 @@ export function createSourceViewer(root: HTMLElement): SourceViewerHandle {
   const closeBtn = root.querySelector('#source-close') as HTMLButtonElement
 
   let files: string[] = []
-  let current = ''
   let visible = false
 
   function renderSource(source: string): void {
@@ -201,7 +200,6 @@ export function createSourceViewer(root: HTMLElement): SourceViewerHandle {
 
   function selectFile(file: string): void {
     if (!files.includes(file)) return
-    current = file
 
     const source = SOURCES[file]
     if (source === undefined) {

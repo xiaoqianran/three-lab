@@ -104,7 +104,6 @@ export const ragdollHall: Hall = {
   camera: { radius: 16, theta: 0.75, phi: 1.15, target: [0, 6, 0] },
 
   build(ctx: HallContext) {
-    const world = ctx.physics.world
     ctx.stage.addGround(60)
 
     // 一圈矮墙，别让人摔出去

@@ -22,7 +22,6 @@ export class World {
   readonly scene: THREE.Scene
 
   private readonly engine: Engine
-  private gui: GUI | null = null
   private rootFolder: GUI | null = null
   /** 不在 root 里的资源（例如 scene.background 用到的贴图）也要能一起释放 */
   private readonly tracked: THREE.Object3D[] = []
@@ -121,7 +120,6 @@ export class World {
 
   /** 主程序把 lil-gui 的根实例交给 World，章节才能往面板上挂控件 */
   attachGui(gui: GUI): void {
-    this.gui = gui
     this.rootFolder = gui.addFolder('本章')
     this.rootFolder.domElement.classList.add('world-folder')
   }
@@ -167,7 +165,6 @@ export class World {
     this.afterRenderFns.length = 0
     this.rootFolder?.destroy()
     this.rootFolder = null
-    this.gui = null
   }
 
   /** 递归释放一棵子树上的几何 / 材质 / 贴图 */

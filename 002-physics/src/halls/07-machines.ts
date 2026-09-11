@@ -17,7 +17,6 @@ export const machineHall: Hall = {
 
   build(ctx) {
     const { stage, physics } = ctx
-    const world = physics.world
 
     stage.addGround(70)
     joints.length = 0

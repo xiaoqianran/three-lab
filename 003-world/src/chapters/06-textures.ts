@@ -178,6 +178,15 @@ export const textures: Chapter = {
     loader.load(imageUrl, (texture) => {
       texture.colorSpace = THREE.SRGBColorSpace
       texture.anisotropy = 8
+
+      // 异步加载可能在"这一章已经被拆掉"之后才回来：
+      // 这时 asyncPlane 已经不在场景里，World 清不到它身上的贴图，
+      // 所以必须当场释放 —— 否则每切走一次就漏一张显存
+      if (asyncPlane.parent === null) {
+        texture.dispose()
+        return
+      }
+
       loadedTexture = texture
       const material = asyncPlane.material as THREE.MeshStandardMaterial
       material.map = texture
@@ -236,9 +245,11 @@ export const textures: Chapter = {
   dispose() {
     // 这些贴图是"按需创建"的，虽然 World 会释放场景里引用到的贴图，
     // 但像 dataTexture 这种只挂在材质上的，自己再收一次尾更踏实
+    // 自己持有的贴图显式收尾，不做"反正 World 会兜底"的假设
+    loadedTexture?.dispose()
+    loadedTexture = null
     checkerTexture = null
     dataTexture = null
-    loadedTexture = null
     spinCube = null
   },
 }
